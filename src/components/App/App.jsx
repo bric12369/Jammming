@@ -24,9 +24,13 @@ function App() {
   const addToPlaylist = (track) => {
     if (!playlistTracks.some((t) => t.id === track.id)) {
       setPlaylistTracks([...playlistTracks, track]);
-      console.log("Updated Playlist:", [...playlistTracks, track]);
     }
   };
+
+  const removeFromPlaylist = (track) => {
+    console.log("Removing track:", track);
+    setPlaylistTracks(playlistTracks.filter((t) => t.id !== track.id));
+  }
 
   return (
     <div className={styles.app}>
@@ -41,6 +45,7 @@ function App() {
           playlistTracks={playlistTracks}
           setPlaylistName={setPlaylistName}
           setPlaylistTracks={setPlaylistTracks}
+          removeFromPlaylist={removeFromPlaylist}
         />
       </div>
     </div>

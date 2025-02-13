@@ -2,12 +2,12 @@ import React from 'react';
 import styles from './SearchResults.module.css';
 import Tracklist from '../Tracklist/Tracklist';
 
-function SearchResults({ searchResults }) {
+function SearchResults({ searchResults, addToPlaylist }) {
 
-    return(
+    return (
         <div className={styles.searchResults}>
-        <h2>Search Results:</h2>
-        <Tracklist tracks={searchResults} />
+            <h2>Search Results:</h2>
+            <Tracklist tracks={searchResults} addToPlaylist={addToPlaylist}/>
         </div>
     )
 }

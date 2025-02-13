@@ -5,6 +5,7 @@ import SearchResults from '../SearchResults/SearchResults'
 import Playlist from '../Playlist/Playlist'
 
 function App() {
+
   const [searchResults, setSearchResults] = useState([
     {
       id: 1, artist: "Bastille", title: "Pompeii", album: "Bad Blood"
@@ -17,6 +18,16 @@ function App() {
     }
   ]);
 
+  const [playlistName, setPlaylistName] = useState('My Playlist');
+  const [playlistTracks, setPlaylistTracks] = useState([]);
+
+  const addToPlaylist = (track) => {
+    if (!playlistTracks.some((t) => t.id === track.id)) {
+      setPlaylistTracks([...playlistTracks, track]);
+      console.log("Updated Playlist:", [...playlistTracks, track]);
+    }
+  };
+
   return (
     <div className={styles.app}>
       <header>
@@ -24,8 +35,13 @@ function App() {
       </header>
       <SearchBar />
       <div className={styles.flexContainer}>
-        <SearchResults searchResults={searchResults} />
-        <Playlist />
+        <SearchResults searchResults={searchResults} addToPlaylist={addToPlaylist}/>
+        <Playlist 
+          playlistName={playlistName}
+          playlistTracks={playlistTracks}
+          setPlaylistName={setPlaylistName}
+          setPlaylistTracks={setPlaylistTracks}
+        />
       </div>
     </div>
   )

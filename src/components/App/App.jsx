@@ -23,8 +23,10 @@ function App() {
         <h1 className={styles.header}>Ja<span className={styles.highlight}>mmm</span>ing</h1>
       </header>
       <SearchBar />
-      <SearchResults searchResults={searchResults} />
-      <Playlist />
+      <div className={styles.flexContainer}>
+        <SearchResults searchResults={searchResults} />
+        <Playlist />
+      </div>
     </div>
   )
 }

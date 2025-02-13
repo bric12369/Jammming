@@ -7,3 +7,7 @@
     justify-self: flex-end;
     align-items: center;
 }
+
+.playlist h2 {
+    font-size: 2.5rem;
+}

@@ -1,0 +1,9 @@
+.playlist {
+    border-radius: 7px;
+    width: 40%;
+    margin-right: 10px;
+    padding: 1rem;
+    background-color: rgba(38, 10, 65, 0.616);
+    justify-self: flex-end;
+    align-items: center;
+}

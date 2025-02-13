@@ -1,19 +1,20 @@
 .searchBar {
-    margin: 30px;
+    margin: 100px;
     display: inline-flex;
     flex-direction: column;
 }
 
 input {
-    width: 400px;
-    height: 40px;
-    border-radius: 8px;
+    width: 35rem;
+    height: 6rem;
+    border-radius: 10px;
 }
 
 button {
-    margin-top: 20px;
+    margin-top: 1.5rem;
     width: 33%;
+    height: 2.5rem;
     align-self: center;
     cursor: pointer;
-    border-radius: 5px;
+    border-radius: 7px;
 }

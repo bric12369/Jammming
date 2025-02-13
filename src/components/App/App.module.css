@@ -3,5 +3,18 @@
 }
 
 .highlight {
-  color: blueviolet;
+  color: rgb(152, 50, 248);
+}
+
+header {
+  margin: 0;
+  height: 100%;
+  width: 100%;
+  background-color: rgb(38, 10, 65);
+}
+
+h1 {
+  padding: 20px;
+  font-size: 4rem;
+  margin: 0;
 }

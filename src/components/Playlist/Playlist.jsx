@@ -6,7 +6,6 @@ function Playlist({ playlistName, playlistTracks, setPlaylistName, removeFromPla
 
     return(
         <div className={styles.playlist}>
-            <h2>My Playlist:</h2>
             <input 
                 type="text"
                 value={playlistName}

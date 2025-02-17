@@ -1,8 +1,10 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import styles from './App.module.css'
 import SearchBar from '../SearchBar/SearchBar'
 import SearchResults from '../SearchResults/SearchResults'
 import Playlist from '../Playlist/Playlist'
+import Spotify from '../Spotify/Spotify'
+
 
 function App() {
 
@@ -20,6 +22,11 @@ function App() {
 
   const [playlistName, setPlaylistName] = useState('My Playlist');
   const [playlistTracks, setPlaylistTracks] = useState([]);
+
+  useEffect(() => {
+    Spotify.getAccessToken();
+  }, [])
+
 
   const addToPlaylist = (track) => {
     if (!playlistTracks.some((t) => t.id === track.id)) {

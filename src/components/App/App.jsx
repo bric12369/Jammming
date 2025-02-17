@@ -9,7 +9,7 @@ import Spotify from '../Spotify/Spotify'
 function App() {
 
   const [searchResults, setSearchResults] = useState([]);
-  const [playlistName, setPlaylistName] = useState('My Playlist');
+  const [playlistName, setPlaylistName] = useState('');
   const [playlistTracks, setPlaylistTracks] = useState([]);
 
   const handleEnterPress = (event) => {
@@ -66,11 +66,11 @@ function App() {
 
   return (
     <div className={styles.app}>
-      <header>
-        <h1 className={styles.header}>
+      <nav className={styles.header}>
+        <h1>
           Ja<span className={styles.highlight}>mmm</span>ing
         </h1>
-      </header>
+      </nav>
       <SearchBar onSearch={searchSpotify} />
       <div className={styles.flexContainer}>
         <SearchResults searchResults={searchResults} addToPlaylist={addToPlaylist} />

@@ -1,7 +1,16 @@
+* {
+    margin: 0 0 0.5rem 0;
+}
+
 html {
     background-image: url(./background_photo_desktop.jpg);
     background-position: center;
     background-repeat: no-repeat;
-    background-size: 100%;
+    background-size: cover;
+    background-attachment: fixed;
     color: white;
+    font-family: 'Courier New', Courier, monospace;
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
 }

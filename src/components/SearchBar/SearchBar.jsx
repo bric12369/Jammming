@@ -13,13 +13,14 @@ function SearchBar({ onSearch }) {
     return(
         <div className={styles.searchBar}>
             <input 
+            className={styles.searchInput}
             type="text" 
             id="searchBar" 
             placeholder="Search for your favourite songs..."
             value={searchTerm}
             onChange={(e) => setSearchTerm(e.target.value)}
             />
-            <button onClick={handleSearch}>Search</button>
+            <button className={styles.searchBtn} onClick={handleSearch}>Search</button>
         </div>
     );
 };

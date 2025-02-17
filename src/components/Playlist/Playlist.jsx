@@ -7,6 +7,7 @@ function Playlist({ playlistName, playlistTracks, setPlaylistName, removeFromPla
     return(
         <div className={styles.playlist}>
             <input 
+                placeholder="Name Your Playlist Here..."
                 type="text"
                 value={playlistName}
                 onChange={(e) => setPlaylistName(e.target.value)}
@@ -15,7 +16,7 @@ function Playlist({ playlistName, playlistTracks, setPlaylistName, removeFromPla
 
             <Tracklist tracks={playlistTracks} removeFromPlaylist={removeFromPlaylist} />
 
-            <button onClick={savePlaylist}>Save to Spotify</button>
+            <button className={styles.saveBtn} onClick={savePlaylist}>Save to Spotify</button>
         </div>
     )
 }

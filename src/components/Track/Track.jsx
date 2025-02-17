@@ -5,12 +5,14 @@ function Track({ track, addToPlaylist, removeFromPlaylist }) {
     return (
         <div className={styles.track}>
             <div className={styles.trackInfoContainer}>
-                <h3>{track.title}</h3>
-                <p>{track.artist} | {track.album}</p>
+                <h4>{track.artist}</h4>
+                <p>{track.name} | {track.album}</p>
 
-                {addToPlaylist && <button className={styles.addBtn} onClick={() => addToPlaylist(track)}>+</button>}
+                {addToPlaylist && (
+                    <button className={styles.addBtn} onClick={() => addToPlaylist(track)}>+</button>)}
 
-                {removeFromPlaylist && <button className={styles.removeBtn} onClick={() => removeFromPlaylist(track)}>-</button>}
+                {removeFromPlaylist && (
+                    <button className={styles.removeBtn} onClick={() => removeFromPlaylist(track)}>-</button>)}
             </div>          
         </div>
     )

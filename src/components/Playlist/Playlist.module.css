@@ -1,6 +1,6 @@
 .playlist {
     border-radius: 7px;
-    width: 40%;
+    width: 45%;
     margin-right: 10px;
     padding: 1rem;
     background-color: rgba(38, 10, 65, 0.616);
@@ -8,6 +8,49 @@
     align-items: center;
 }
 
-.playlist h2 {
-    font-size: 2.5rem;
+.playlistInput {
+    width: 80%;
+    background: none;
+    color: white;
+    height: fit-content;
+    padding: 1rem;
+    border: none;
+    border-bottom: 1px solid;
+    border-radius: 0%;
+    text-align: center;
+    font-size: 1.5rem;
+    font-weight: bold;
+    font-family: 'Courier New', Courier, monospace;
 }
+
+.saveBtn {
+    width: 60%;
+    background: linear-gradient(to bottom, #e0e0e0, #b0b0b0); /* Gradient for a 3D effect */
+    border: 2px solid #999; /* Slightly darker border */
+    border-radius: 8px; /* Rounded edges */
+    padding: 12px 24px;
+    margin-top: 1rem;
+    font-size: 16px;
+    font-weight: bold;
+    color: #333;
+    text-shadow: 1px 1px 0px #fff; /* Light reflection */
+    box-shadow: inset 2px 2px 4px rgba(255, 255, 255, 0.6), /* Inner highlight */
+                inset -2px -2px 4px rgba(0, 0, 0, 0.2), /* Inner shadow */
+                3px 3px 6px rgba(0, 0, 0, 0.3); /* Outer shadow */
+    cursor: pointer;
+    transition: all 0.2s ease-in-out;
+}
+
+.saveBtn:hover {
+    background: linear-gradient(to bottom, #f0f0f0, #c0c0c0);
+    box-shadow: inset 3px 3px 5px rgba(255, 255, 255, 0.7), 
+                inset -3px -3px 5px rgba(0, 0, 0, 0.3),
+                4px 4px 8px rgba(0, 0, 0, 0.4);
+  }
+
+  .saveBtn:active {
+    background: linear-gradient(to bottom, #b0b0b0, #909090);
+    box-shadow: inset 5px 5px 8px rgba(0, 0, 0, 0.4), 
+                inset -2px -2px 5px rgba(255, 255, 255, 0.2);
+    transform: translateY(1px);
+  }

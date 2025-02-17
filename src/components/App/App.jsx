@@ -12,8 +12,20 @@ function App() {
   const [playlistName, setPlaylistName] = useState('My Playlist');
   const [playlistTracks, setPlaylistTracks] = useState([]);
 
+  const handleEnterPress = (event) => {
+    if (event.key === "Enter") {
+      searchSpotify(event.target.value);
+    }
+  };
+
   useEffect(() => {
     Spotify.getAccessToken();
+
+    window.addEventListener('keydown', handleEnterPress);
+
+    return () => {
+    window.removeEventListener('keydown', handleEnterPress);
+    };
   }, [])
 
 
@@ -32,28 +44,37 @@ function App() {
     Spotify.search(term).then(setSearchResults);
   };
 
-  const savePlaylist = () => {
+  const savePlaylist = async () => {
+    if (!playlistName || playlistTracks.length === 0) {
+      alert("Please add tracks and name your playlist before saving!");
+      return;
+    }
+
     const trackUris = playlistTracks.map(track => track.uri);
 
-    console.log("Saving playlist:", playlistName);
-    console.log("Track URIs:", trackUris);
-
-    setTimeout(() => {
+    try {
+      console.log("Saving playlist:", playlistName);
+      await Spotify.savePlaylist(playlistName, trackUris);
       console.log("Playlist saved successfully!");
+
       setPlaylistName("New Playlist");
       setPlaylistTracks([]);
-    }, 1000);
+    } catch (error) {
+      console.error("Error saving playlist:", error);
+    }
   };
 
   return (
     <div className={styles.app}>
       <header>
-        <h1 className={styles.header}>Ja<span className={styles.highlight}>mmm</span>ing</h1>
+        <h1 className={styles.header}>
+          Ja<span className={styles.highlight}>mmm</span>ing
+        </h1>
       </header>
-      <SearchBar onSearch={searchSpotify}/>
+      <SearchBar onSearch={searchSpotify} />
       <div className={styles.flexContainer}>
-        <SearchResults searchResults={searchResults} addToPlaylist={addToPlaylist}/>
-        <Playlist 
+        <SearchResults searchResults={searchResults} addToPlaylist={addToPlaylist} />
+        <Playlist
           playlistName={playlistName}
           playlistTracks={playlistTracks}
           setPlaylistName={setPlaylistName}
@@ -63,7 +84,7 @@ function App() {
         />
       </div>
     </div>
-  )
+  );
 }
 
 export default App

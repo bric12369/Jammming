@@ -8,18 +8,7 @@ import Spotify from '../Spotify/Spotify'
 
 function App() {
 
-  const [searchResults, setSearchResults] = useState([
-    {
-      id: 1, artist: "Bastille", title: "Pompeii", album: "Bad Blood", uri: "spotify:track:4Ub8UsjWuewQrPhuepfVpd"
-    },
-    {
-      id: 2, artist: "Orville Peck", title: "Daytona Sand", album: "Bronco", uri: "spotify:track:5D9fWPC6JwA8SgksEpO0jC"
-    },
-    {
-      id: 3, artist: "Bring Me the Horizon", title: "Sleepwalking", album: "Sempiternal", uri: "spotify:track:0gchQwxmBWj5no8NJ8b2yH"
-    }
-  ]);
-
+  const [searchResults, setSearchResults] = useState([]);
   const [playlistName, setPlaylistName] = useState('My Playlist');
   const [playlistTracks, setPlaylistTracks] = useState([]);
 
@@ -37,7 +26,11 @@ function App() {
   const removeFromPlaylist = (track) => {
     console.log("Removing track:", track);
     setPlaylistTracks(playlistTracks.filter((t) => t.id !== track.id));
-  }
+  };
+
+  const searchSpotify = (term) => {
+    Spotify.search(term).then(setSearchResults);
+  };
 
   const savePlaylist = () => {
     const trackUris = playlistTracks.map(track => track.uri);
@@ -57,7 +50,7 @@ function App() {
       <header>
         <h1 className={styles.header}>Ja<span className={styles.highlight}>mmm</span>ing</h1>
       </header>
-      <SearchBar />
+      <SearchBar onSearch={searchSpotify}/>
       <div className={styles.flexContainer}>
         <SearchResults searchResults={searchResults} addToPlaylist={addToPlaylist}/>
         <Playlist 

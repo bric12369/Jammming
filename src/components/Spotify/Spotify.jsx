@@ -62,6 +62,42 @@ const Spotify = {
       return [];
     }
   },
+
+  async savePlaylist(playlistName, trackUris) {
+    if (!playlistName || !trackUris.length) return;
+
+    const token = this.getAccessToken();
+    const headers = { Authorization: `Bearer ${token}`, "Content-Type": "application/json" };
+
+    try {
+      const userResponse = await fetch("https://api.spotify.com/v1/me", { headers });
+      const userData = await userResponse.json();
+      const userId = userData.id;
+
+      const playlistResponse = await fetch(`https://api.spotify.com/v1/users/${userId}/playlists`, {
+        method: "POST",
+        headers,
+        body: JSON.stringify({
+          name: playlistName,
+          description: "Created with Jammming!",
+          public: true,
+        }),
+      });
+
+      const playlistData = await playlistResponse.json();
+      const playlistId = playlistData.id;
+
+      await fetch(`https://api.spotify.com/v1/playlists/${playlistId}/tracks`, {
+        method: "POST",
+        headers,
+        body: JSON.stringify({ uris: trackUris }),
+      });
+
+      console.log(`Playlist "${playlistName}" saved to Spotify!`);
+    } catch (error) {
+      console.error("Error saving playlist:", error);
+    }
+  },
 };
 
 export default Spotify;

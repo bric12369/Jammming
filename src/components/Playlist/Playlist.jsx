@@ -2,7 +2,7 @@ import React from "react";
 import Tracklist from "../Tracklist/Tracklist";
 import styles from './Playlist.module.css';
 
-function Playlist({ playlistName, playlistTracks, setPlaylistName, removeFromPlaylist }) {
+function Playlist({ playlistName, playlistTracks, setPlaylistName, removeFromPlaylist, savePlaylist }) {
 
     return(
         <div className={styles.playlist}>
@@ -15,7 +15,7 @@ function Playlist({ playlistName, playlistTracks, setPlaylistName, removeFromPla
 
             <Tracklist tracks={playlistTracks} removeFromPlaylist={removeFromPlaylist} />
 
-            <button>Save to Spotify</button>
+            <button onClick={savePlaylist}>Save to Spotify</button>
         </div>
     )
 }

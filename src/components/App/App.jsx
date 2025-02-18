@@ -9,6 +9,7 @@ import Spotify from '../Spotify/Spotify'
 function App() {
 
   const [searchResults, setSearchResults] = useState([]);
+  const [originalSearchResults, setOriginalSearchResults] = useState([]);
   const [playlistName, setPlaylistName] = useState('');
   const [playlistTracks, setPlaylistTracks] = useState([]);
 
@@ -32,16 +33,31 @@ function App() {
   const addToPlaylist = (track) => {
     if (!playlistTracks.some((t) => t.id === track.id)) {
       setPlaylistTracks([...playlistTracks, track]);
+
+      setSearchResults((prevResults) => prevResults.filter((t) => t.id !== track.id));
     }
   };
 
   const removeFromPlaylist = (track) => {
-    console.log("Removing track:", track);
-    setPlaylistTracks(playlistTracks.filter((t) => t.id !== track.id));
+    setPlaylistTracks((prevTracks) => prevTracks.filter((t) => t.id !== track.id));
+
+    // Find the original position of the track in originalSearchResults
+    const originalIndex = originalSearchResults.findIndex((t) => t.id === track.id);
+    
+    if (originalIndex !== -1) {
+      setSearchResults((prevResults) => {
+        const updatedResults = [...prevResults];
+        updatedResults.splice(originalIndex, 0, track); // Insert at the original position
+        return updatedResults;
+      });
+    }
   };
 
   const searchSpotify = (term) => {
-    Spotify.search(term).then(setSearchResults);
+    Spotify.search(term).then((results) => {
+      setSearchResults(results);
+      setOriginalSearchResults(results); // Store the original order
+    });
   };
 
   const savePlaylist = async () => {
